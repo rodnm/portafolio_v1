@@ -36,14 +36,16 @@ export default defineConfig({
           }
         ]
       },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,pdf}'],
-        navigateFallback: '/404',
-        maximumFileSizeToCacheInBytes: 5000000,
+      experimental: {
+        // Precache both /en and /en/ (GitHub Pages redirects to the slash form).
+        directoryAndTrailingSlashHandler: true
       },
-      devOptions: {
-        enabled: true,
-        navigateFallbackAllowlist: [/^\/404$/],
+      workbox: {
+        // PDFs stay out so a replaced CV is never served stale.
+        globPatterns: ['**/*.{js,css,html,svg,webp,ico}'],
+        // Static multi-page site: unmatched navigations must reach the network, not the 404 page.
+        navigateFallback: null,
+        maximumFileSizeToCacheInBytes: 5000000,
       }
     })
   ]
