@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { base } from '../../config';
 
 export default function LanguageDetector() {
     useEffect(() => {
@@ -8,10 +9,10 @@ export default function LanguageDetector() {
         const userLang = navigator.language.split('-')[0];
         const currentPath = window.location.pathname;
 
-        // If root path and browser is English
-        if (currentPath === '/' && userLang === 'en') {
+        // If the home page is open and the browser is English
+        if (currentPath === base && userLang === 'en') {
             sessionStorage.setItem('language-detected', 'true');
-            window.location.href = '/en';
+            window.location.href = `${base}en`;
         }
     }, []);
 

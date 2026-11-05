@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('homepage loads correctly', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
 
     // Verify title
     await expect(page).toHaveTitle(/Portafolio/);
@@ -16,7 +16,7 @@ test('homepage loads correctly', async ({ page }) => {
 });
 
 test('theme toggle works', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
 
     const themeButton = page.getByRole('button', { name: /toggle theme/i });
     await themeButton.click();

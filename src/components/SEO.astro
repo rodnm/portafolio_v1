@@ -1,4 +1,6 @@
 ---
+import { base } from "../config";
+
 interface Props {
     title: string;
     description: string;
@@ -15,9 +17,8 @@ const {
     canonicalURL,
 } = Astro.props;
 
-const siteURL = Astro.site
-    ? Astro.site.href
-    : "https://rodnm.github.io/portfolio_v1"; // Fallback or actual site URL
+// Site root including the base path, e.g. https://rodnm.github.io/portafolio_v1/.
+const siteURL = new URL(base, Astro.site ?? "https://rodnm.github.io").href;
 const fullImageURL = new URL(image, siteURL).href;
 const fullCanonicalURL =
     canonicalURL || new URL(Astro.url.pathname, siteURL).href;
@@ -54,7 +55,7 @@ const fullCanonicalURL =
 <!-- Alternate Languages -->
 {
     locale === "es" && (
-        <link rel="alternate" hreflang="en" href={`${siteURL}/en`} />
+        <link rel="alternate" hreflang="en" href={new URL("en/", siteURL).href} />
     )
 }
 {locale === "en" && <link rel="alternate" hreflang="es" href={siteURL} />}

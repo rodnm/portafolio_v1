@@ -7,7 +7,7 @@ import ReloadPrompt from '../components/ui/ReloadPrompt';
 import ThemeToggle from '../components/ui/ThemeToggle';
 import { Languages } from 'lucide-react';
 import SEO from '../components/SEO.astro';
-import { navigation } from '../config';
+import { base, navigation } from '../config';
 import '../styles/global.css';
 
 interface Props {
@@ -24,7 +24,7 @@ const {
 
 const navItems = navigation[locale];
 const isEs = locale === 'es';
-const toggleLink = isEs ? '/en' : '/';
+const toggleLink = isEs ? `${base}en` : base;
 const toggleText = isEs ? 'EN' : 'ES';
 ---
 
@@ -32,7 +32,7 @@ const toggleText = isEs ? 'EN' : 'ES';
 <html lang={locale}>
     <head>
         <SEO title={title} description={description} locale={locale} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 
         <!-- Preconnect to external domains -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -118,7 +118,7 @@ const toggleText = isEs ? 'EN' : 'ES';
         >
             <nav class="w-full px-4 md:px-8 py-4 flex justify-between items-center">
                 <a
-                    href={isEs ? '/' : '/en'}
+                    href={isEs ? base : `${base}en`}
                     class="text-2xl font-bold text-[var(--color-primary)] dark:text-[var(--color-secondary)]"
                 >
                     Portafolio
