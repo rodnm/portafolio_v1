@@ -9,6 +9,9 @@ import rseriesImg from './assets/images/rseries.png';
 import portfolioImg from './assets/images/portfolio-v1.png';
 import fullStackAgentImg from './assets/images/fullstack-agent.png';
 
+// Site base path ("/portafolio_v1/"), always ending in a slash.
+export const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
 export interface Experience {
     title: string;
     company: string;
@@ -55,7 +58,7 @@ export const personalInfo = {
     title: 'Economista',
     description: 'Economista que transforma datos en decisiones, procesos y soluciones con impacto',
     profileImage: profileImg,
-    cv: '/cv.pdf',
+    cv: `${base}cv.pdf`,
     about: [
         'Economista orientado a la ciencia e ingeniería de datos, con experiencia en investigación aplicada, análisis cuantitativo y desarrollo de sistemas de información. He diseñado pipelines ETL, modelos de bases de datos e indicadores institucionales para fortalecer la gestión del conocimiento y la productividad académica.',
         'Me apasiona aprender nuevas tecnologías, construir soluciones reproducibles y conectar la analítica, la automatización y la economía para generar conocimiento útil e impulsar la innovación. Creo en el valor de los datos bien estructurados, la documentación transparente y la creatividad aplicada a la resolución de problemas reales.',
